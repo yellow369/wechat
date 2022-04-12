@@ -1,15 +1,55 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/video/video",
+    "pages/login/login",
+    "pages/profile/profile",
+    "pages/search/search"
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "Weixin",
+    "navigationBarBackgroundColor": "#00ADEB",
+    "navigationBarTitleText": "云音乐",
     "navigationBarTextStyle": "black"
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json",
-  "lazyCodeLoading": "requiredComponents"
+  "lazyCodeLoading": "requiredComponents",
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "主页",
+        "iconPath": "/static/fonts/home.png",
+        "selectedIconPath": "/static/fonts/home-s.png"
+      },
+      {
+        "pagePath": "pages/video/video",
+        "text": "播放",
+        "iconPath": "/static/fonts/play.png",
+        "selectedIconPath": "/static/fonts/play-s.png"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "个人中心",
+        "iconPath": "/static/fonts/user.png",
+        "selectedIconPath": "/static/fonts/user-s.png"
+      }
+    ],
+    "color": "#333",
+    "selectedColor": "#00ADEB"
+  },
+  "requiredBackgroundModes": [
+    "audio"
+  ],
+  "subpackages": [
+    {
+      "root": "package",
+      "pages": [
+        "pages/recommendSong/recommendSong",
+        "pages/song/song",
+        "pages/rankSong/rankSong"
+      ]
+    }
+  ]
 }

@@ -1,23 +1,65 @@
-<!--index.wxml-->
-<view class="container">
-  <view class="userinfo">
-    <block wx:if="{{canIUseOpenData}}">
-      <view class="userinfo-avatar" bindtap="bindViewTap">
-        <open-data type="userAvatarUrl"></open-data>
-      </view>
-      <open-data type="userNickName"></open-data>
-    </block>
-    <block wx:elif="{{!hasUserInfo}}">
-      <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile"> 获取头像昵称 </button>
-      <button wx:elif="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-      <view wx:else> 请使用1.4.4及以上版本基础库 </view>
-    </block>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
+<view class="indexContainer">
+  <!-- 头部搜索框 -->
+  <!-- <view class="header">
+    <view class="search" bindtap="toSearchPage">搜索音乐</view>
+  </view> -->
+  <!-- 轮播图 -->
+  <swiper class="banners" autoplay indicator-dots interval='3000' circular indicator-active-color='#00ADEB'>
+    <swiper-item wx:for="{{bannerList}}" wx:key="bannerId">
+      <image src="{{item.pic}}" class="test"></image>
+    </swiper-item>
+  </swiper>
+  <!-- 图表导航栏 -->
+  <view class="navContainer">
+    <view class="navItem" bindtap="toRecommendSong">
+      <span class="icon-home1"></span>
+      <text>推荐</text>
+    </view>
+    <view class="navItem">
+      <span class="icon-home2"></span>
+      <text>歌单</text>
+    </view>
+    <view class="navItem" bindtap="toRankSong">
+      <span class="icon-home3"></span>
+      <text>排行榜</text>
+    </view>
+    <view class="navItem">
+      <span class="icon-home4"></span>
+      <text>电台</text>
+    </view>
+    <view class="navItem">
+      <span class="icon-home5"></span>
+      <text>直播</text>
+    </view>
   </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
+  <!-- 推荐歌曲区域 -->
+  <view class="recommendContainer">
+    <NavHeader title="推荐" more="加载更多"></NavHeader>
+    <scroll-view class="recommendScroll" enable-flex scroll-x>
+      <view class="scrollItem" wx:for="{{recommendList}}" wx:key="id">
+        <image src="{{item.picUrl}}"></image>
+        <text>{{item.name}}</text>
+      </view>
+    </scroll-view>
+  </view>
+  <!-- 排行榜区域 -->
+  <view class="topList">
+    <!-- 头部区域 -->
+    <NavHeader title="排行榜" more="热歌风向标"></NavHeader>
+    <!-- 内容区域 -->
+    <swiper class="topListSwiper" circular next-margin="50rpx" previous-margin="50rpx">
+      <swiper-item wx:for="{{topList}}" wx:key="name">
+        <view class="swiperItem">
+          <view class="title">{{item.name}}</view>
+          <scroll-view class="musicList" scroll-y="{{true}}">
+            <view class="musicItem" wx:for="{{item.tracks}}" wx:key="id" wx:for-item="musicItem" bindtap="toSong" data-id='{{musicItem.id}}'>
+              <image src="{{musicItem.al.picUrl}}"></image>
+              <text class="count">{{index + 1}}</text>
+              <text class="musicName">{{musicItem.name}}</text>
+            </view>
+          </scroll-view>
+        </view>
+      </swiper-item>
+    </swiper>
   </view>
 </view>

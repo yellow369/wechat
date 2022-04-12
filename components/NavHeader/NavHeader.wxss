@@ -1,0 +1,16 @@
+.header {
+  padding-bottom: 20rpx;
+}
+.header .title {
+  font-size: 32rpx;
+  line-height: 100rpx;
+  color: #666;
+}
+ .more {
+  float: right;
+  font-size: 22rpx;
+  background-color: rgba(204, 204, 204, 0.336);
+  border-radius: 30rpx;
+  padding: 10rpx 20rpx;
+  margin-top: 29rpx;
+ }
